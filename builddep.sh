@@ -4,6 +4,7 @@ set -xe
 
 # Ensure dependency is cloned
 git submodule init
+git submodule update
 
 # Build dependency and copy required files
 PROJECT=$(pwd)
