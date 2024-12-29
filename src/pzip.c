@@ -5,7 +5,6 @@
 void pzip(struct zip_t* zip) {
   int i, n = zip_entries_total(zip);
   unsigned char *buf;
-  size_t bufsize;
   for (i = 0; i<n; ++i){
     zip_entry_openbyindex(zip, i);
     {

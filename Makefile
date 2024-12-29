@@ -13,7 +13,7 @@ LIBPATHS += $(ZIP_PATH)
 LIBFILES += $(ZIP_LIB)
 
 CC       := gcc
-CFLAGS   := -O2 $(foreach include,$(INCLUDES),-I$(include))
+CFLAGS   := -O2 -g -Wall $(foreach include,$(INCLUDES),-I$(include))
 LDFLAGS  := $(foreach lib,$(LIBPATHS),-L$(lib)) $(LIBS)
 
 SRC      := src/main.c src/pzip.c

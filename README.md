@@ -7,5 +7,5 @@ Using this to learn how to parse zip files in C.
 make
 ```
 
-## Build Dependdncies
+## Build Dependencies
 `gcc git make cmake`
