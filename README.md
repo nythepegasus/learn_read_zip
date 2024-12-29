@@ -6,3 +6,6 @@ Using this to learn how to parse zip files in C.
 # Just run the following
 make
 ```
+
+## Build Dependdncies
+`gcc git make cmake`
