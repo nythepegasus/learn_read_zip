@@ -2,25 +2,26 @@
 
 INCLUDES :=
 LIBPATHS :=
-LIBS     :=
+LIBFILES :=
+LIBS     := -lzip
 
 ZIP_PATH := deps/zip/
 ZIP_LIB  := $(ZIP_PATH)libzip.a
 
 INCLUDES += $(ZIP_PATH)src/
 LIBPATHS += $(ZIP_PATH)
-LIBS     += $(ZIP_LIB)
+LIBFILES += $(ZIP_LIB)
 
 CC       := gcc
-CFLAGS   := -O2 -I$(INCLUDES)
-LDFLAGS  := -L$(LIBPATHS) -lzip
+CFLAGS   := -O2 $(foreach include,$(INCLUDES),-I$(include))
+LDFLAGS  := $(foreach lib,$(LIBPATHS),-L$(lib)) $(LIBS)
 
 SRC      := src/main.c
 # DIR is install dir
 DIR      := build/
 EXE      := $(DIR)parse_zip
 
-$(EXE): $(SRC) $(LIBS) $(DIR)
+$(EXE): $(SRC) $(LIBFILES) $(DIR)
 	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
 
 $(DIR):
