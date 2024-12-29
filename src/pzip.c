@@ -3,7 +3,7 @@
 #include <pzip.h>
 
 void pzip(struct zip_t* zip) {
-  int i, n = zip_entries_total(zip);
+  int i, b = 0, n = zip_entries_total(zip);
   unsigned char *buf;
   for (i = 0; i<n; ++i){
     zip_entry_openbyindex(zip, i);
@@ -17,6 +17,7 @@ void pzip(struct zip_t* zip) {
         //zip_entry_open(zip, name);
         {
           buf = calloc(sizeof(unsigned char), size);
+          if(!b) b = 1;
           zip_entry_noallocread(zip, (void*)buf, size);
           printf("Contents:\n%s\n", buf);
         }
@@ -27,5 +28,5 @@ void pzip(struct zip_t* zip) {
     }
     zip_entry_close(zip);
   }
-  free(buf);
+  if(b) free(buf);
 }
