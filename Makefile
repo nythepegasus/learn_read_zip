@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := $(EXE)
 
-INCLUDES :=
+INCLUDES := include/
 LIBPATHS :=
 LIBFILES :=
 LIBS     := -lzip
@@ -16,13 +16,13 @@ CC       := gcc
 CFLAGS   := -O2 $(foreach include,$(INCLUDES),-I$(include))
 LDFLAGS  := $(foreach lib,$(LIBPATHS),-L$(lib)) $(LIBS)
 
-SRC      := src/main.c
+SRC      := src/main.c src/pzip.c
 # DIR is install dir
 DIR      := build/
 EXE      := $(DIR)parse_zip
 
 $(EXE): $(SRC) $(LIBFILES) $(DIR)
-	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
+	$(CC) $(CFLAGS) $(SRC) -o $@ $(LDFLAGS)
 
 $(DIR):
 	mkdir $@
